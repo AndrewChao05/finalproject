@@ -35,11 +35,11 @@ export default function Game() {
     <div
       className="relative w-full h-screen bg-white overflow-hidden"
       onClick={handleJump}
-      style={{ position: 'relative', width: '100%', height: '100vh', backgroundColor: '#eee' }}
+      style={{ position: 'relative', width: '80%', height: '80vh', backgroundColor: '#eee' }}
     >
       <Player y={playerY} />
       <div
-        className="absolute bottom-0 left-0 w-full h-4 bg-gray-700"
+        className="absolute bottom-22/100 left-0 w-full h-4 bg-gray-700"
       ></div>
     </div>
   );

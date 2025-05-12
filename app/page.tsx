@@ -1,5 +1,7 @@
 'use client';
 
+import './globals.css';
+
 import React from 'react';
 
 import Game from '../components/Game';

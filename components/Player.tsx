@@ -7,8 +7,8 @@ type PlayerProps = {
 export default function Player({ y }: PlayerProps) {
   return (
     <div
-      className="absolute bottom-0 left-10 w-16 h-16 bg-green-500 rounded"
+      className="absolute bottom-1/4 left-10 w-16 h-16 bg-green-500 rounded"
       style={{ transform: `translateY(-${y}px)` }}
     ></div>
   );
-}
+}   
