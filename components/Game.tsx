@@ -4,11 +4,13 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import Player from './Player';
+import Score from './Score';
 
 export default function Game() {
   const [playerY, setPlayerY] = useState(0);
   const [velocity, setVelocity] = useState(0);
-  const GRAVITY = 2;
+  const [score, setScore] = useState(0);
+  const GRAVITY = 1.7;
   const JUMP_FORCE = -15;
   const GROUND_LEVEL = 0;
 
@@ -48,6 +50,14 @@ export default function Game() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
+  useEffect(() => {
+    const scoreInterval = setInterval(() => {
+      setScore((prevScore) => prevScore + 1);
+    }, 100); 
+
+    return () => clearInterval(scoreInterval);
+  }, []);
+
   return (
     <div
       className="relative w-full h-screen bg-white overflow-hidden"
@@ -55,6 +65,7 @@ export default function Game() {
       style={{ position: 'relative', width: '80%', height: '80vh', backgroundColor: '#eee' }}
     >
       <Player y={playerY} />
+      <Score score={score} />
       <div
         className="absolute bottom-22/100 left-0 w-full h-4 bg-gray-700"
       ></div>
