@@ -6,10 +6,16 @@ import { useState, useEffect } from 'react';
 import Player from './Player';
 import Score from './Score';
 
-export default function Game() {
+type GameProps = {
+  onGameOver: () => void;
+  score: number;
+  setScore: React.Dispatch<React.SetStateAction<number>>;
+  isRunning: boolean; 
+};
+
+export default function Game({ onGameOver, score, setScore, isRunning }: GameProps) {
   const [playerY, setPlayerY] = useState(0);
   const [velocity, setVelocity] = useState(0);
-  const [score, setScore] = useState(0);
   const GRAVITY = 1.7;
   const JUMP_FORCE = -15;
   const GROUND_LEVEL = 0;
@@ -25,6 +31,8 @@ export default function Game() {
   };
 
   useEffect(() => {
+    if (!isRunning) return;
+
     const gameLoop = setInterval(() => {
       setVelocity((v) => {
         setPlayerY((y) => {
@@ -37,7 +45,7 @@ export default function Game() {
     }, 50);
 
     return () => clearInterval(gameLoop);
-  }, []);
+  }, [isRunning]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -48,21 +56,22 @@ export default function Game() {
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, []);
+  }, [isRunning]);
 
   useEffect(() => {
+    if (!isRunning) return;
+
     const scoreInterval = setInterval(() => {
-      setScore((prevScore) => prevScore + 1);
+      setScore((prev) => prev + 1);
     }, 100); 
 
     return () => clearInterval(scoreInterval);
-  }, []);
+  }, [isRunning]);
 
   return (
     <div
-      className="relative w-full h-screen bg-white overflow-hidden"
+      className="relative w-[80%] h-[80vh] bg-gray-200 overflow-hidden"
       onClick={handleJump}
-      style={{ position: 'relative', width: '80%', height: '80vh', backgroundColor: '#eee' }}
     >
       <Player y={playerY} />
       <Score score={score} />
