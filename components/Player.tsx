@@ -5,10 +5,13 @@ type PlayerProps = {
 };
 
 export default function Player({ y }: PlayerProps) {
+  console.log('PlayerY:', y);
+
   return (
     <div
-      className="absolute bottom-1/4 left-10 w-16 h-16 bg-green-500 rounded"
-      style={{ transform: `translateY(-${y}px)` }}
-    ></div>
+      className="absolute left-10 w-16 h-16 bg-green-500 rounded"
+      style={{ bottom: `${-y+110}px` }}
+    />
   );
-}   
+}
+

@@ -8,28 +8,43 @@ import Player from './Player';
 export default function Game() {
   const [playerY, setPlayerY] = useState(0);
   const [velocity, setVelocity] = useState(0);
-  const GRAVITY = 1;
+  const GRAVITY = 2;
   const JUMP_FORCE = -15;
   const GROUND_LEVEL = 0;
 
-  useEffect(() => {
-    const gameLoop = setInterval(() => {
-      setPlayerY((y) => {
-        let newY = y + velocity;
-        if (newY > GROUND_LEVEL) newY = GROUND_LEVEL;
-        return newY;
-      });
-      setVelocity((v) => v + GRAVITY);
-    }, 50);
-
-    return () => clearInterval(gameLoop);
-  }, [velocity]);
-
   const handleJump = () => {
-    if (playerY === GROUND_LEVEL) {
+    console.log('Jump requested. playerY:', playerY);
+    if (Math.abs(playerY - GROUND_LEVEL) < 1e-2) {
+      console.log('Jump triggered!');
       setVelocity(JUMP_FORCE);
     }
   };
+
+  useEffect(() => {
+    const gameLoop = setInterval(() => {
+      setVelocity((v) => {
+        setPlayerY((y) => {
+          let newY = y + v;
+          if (newY > GROUND_LEVEL) newY = GROUND_LEVEL;
+          return newY;
+        });
+        return v + GRAVITY;
+      });
+    }, 50);
+
+    return () => clearInterval(gameLoop);
+  }, []);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.code === 'Space') {
+        handleJump();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
 
   return (
     <div
