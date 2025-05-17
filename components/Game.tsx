@@ -13,11 +13,13 @@ export default function Game() {
   const GROUND_LEVEL = 0;
 
   const handleJump = () => {
-    console.log('Jump requested. playerY:', playerY);
-    if (Math.abs(playerY - GROUND_LEVEL) < 1e-2) {
-      console.log('Jump triggered!');
-      setVelocity(JUMP_FORCE);
-    }
+    setPlayerY((currentY) => {
+      if (Math.abs(currentY - GROUND_LEVEL) < 1e-2) {
+        setVelocity(JUMP_FORCE);
+      }
+      return currentY;
+    })
+    
   };
 
   useEffect(() => {
