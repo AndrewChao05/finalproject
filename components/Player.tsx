@@ -29,7 +29,7 @@ export default function Player({ y }: PlayerProps) {
       src = {imageSrc}
       alt = "Player"
       className="absolute left-10 w-24"
-      style={{ bottom: `${-y+110}px` }}
+      style={{ bottom: `${-y+160}px` }}
     />
   );
 }
