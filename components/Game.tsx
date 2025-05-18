@@ -31,8 +31,8 @@ export default function Game({onGameOver, score, setScore, highScore, setHighSco
  
 
   const [obstacles, setObstacles] = useState<{ x: number }[]>([]);
-  const minGap = 200; // 每個障礙物至少相隔 200px
-  const obstacleSpeed = 3;
+  const minGap = screenHeight*0.2; // 障礙物之間的最小距離
+  const obstacleSpeed = screenHeight*0.005; // 障礙物移動速度
   
 
 
@@ -87,13 +87,20 @@ export default function Game({onGameOver, score, setScore, highScore, setHighSco
   }, [isRunning]);
 
   //障礙物生成
+  const obstacleImages = [
+    '/capacitor.png',
+    '/resistor.png',
+    '/inductor.png',
+  ];
+
   useEffect(() => {
     if (!isRunning) return;
     let lastObstacleX = 1000;
   
     const interval = setInterval(() => {
       const newX = lastObstacleX + minGap + Math.random()*200;
-      setObstacles((prev) => [...prev, { x: newX }]);
+      const randomImage = obstacleImages[Math.floor(Math.random() * obstacleImages.length)];
+      setObstacles((prev) => [...prev, { x: newX,  image: randomImage}]);
       lastObstacleX = newX;
     }, 400); // 每 0.4 秒試圖生成一個障礙物
   
@@ -119,19 +126,18 @@ export default function Game({onGameOver, score, setScore, highScore, setHighSco
     if (!isRunning) return;
 
     const checkCollision = () => {
-      const playerLeft = 40;
-      const playerRight = 40 + 64;
-      
-  
+      const playerLeft = screenHeight * 0.045; // 位置也可以調整成比例
+      const playerRight = playerLeft + screenHeight * 0.08;
+      const playerTop = -playerY;
+
       for (const ob of obstacles) {
-        const obLeft = ob.x;
-        const obRight = ob.x + 20;
-        const obTop = 60; // 障礙物高度
-        const obBottom = 0;
-  
+        const obLeft = ob.x - screenHeight * 0.045; // 障礙物的左邊界
+        const obRight = ob.x + screenHeight * 0.045;
+        const obTop = screenHeight * 0.1;
+
         const collideX = playerRight > obLeft && playerLeft < obRight;
-        const collideY = -playerY < obTop;
-  
+        const collideY = playerTop < obTop;
+
         if (collideX && collideY) {
           if(score > highScore){
             setHighScore(score);
@@ -164,7 +170,7 @@ export default function Game({onGameOver, score, setScore, highScore, setHighSco
       <Player y={playerY} screenHeight={screenHeight}/>
       <Score score={score} highScore={highScore}/>
       {obstacles.map((ob, index) => (
-        <Obstacle key={index} x={ob.x} />
+        <Obstacle key={index} x={ob.x} image={ob.image} screenHeight={screenHeight} />
       ))}
       <div
         className="absolute bottom-22/100 left-0 w-full h-[1vh] bg-gray-700"

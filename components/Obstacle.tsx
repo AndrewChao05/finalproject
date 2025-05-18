@@ -3,18 +3,21 @@ import React from 'react';
 
 type ObstacleProps = {
   x: number; // 水平位置
-  width?: number;
-  height?: number;
+  image: string;
+  screenHeight: number; // 屏幕高度
+  
 };
 
-export default function Obstacle({ x , width = 20, height = 60 }: ObstacleProps) {
+export default function Obstacle({ x, image, screenHeight }: ObstacleProps) {
   return (
-    <div
-      className="absolute bottom-22/100 bg-red-500"
+    <img
+      src={image}
+      alt="obstacle"
+      className="absolute bottom-23/100 w-10 h-16"
       style={{
-        left: `${x}px`,
-        width: `${width}px`,
-        height: `${height}px`,
+        width: `${screenHeight * 0.05}px`, // 高度的 5%
+        height: `${screenHeight * 0.1}px`,
+        left: `${x}px`
       }}
     />
   );
