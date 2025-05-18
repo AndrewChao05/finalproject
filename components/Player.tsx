@@ -8,7 +8,7 @@ type PlayerProps = {
 
 export default function Player({ y, screenHeight }: PlayerProps) {
   const [runningImage, setRunningImage] = useState('/1.png');
-  const [isTest1, setIsTest1] = useState(true);
+  const [_isTest1, setIsTest1] = useState(true);
 
   useEffect(() => {
     const interval = setInterval(() => {

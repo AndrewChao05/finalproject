@@ -107,7 +107,7 @@ export default function Game({onGameOver, score, setScore, highScore, setHighSco
     let lastObstacleX = 1000;
   
     const interval = setInterval(() => {
-      if (obstacleCountRef.current >= 10) return; // ✅ 限制最大數量
+      if (obstacleCountRef.current >= 15) return; // ✅ 限制最大數量
       const newX = lastObstacleX + minGap + Math.random()*200;
       const randomImage = obstacleImages[Math.floor(Math.random() * obstacleImages.length)];
       setObstacles((prev) => [...prev, { x: newX,  image: randomImage, screenHeight: screenHeight }]);
