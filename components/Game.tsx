@@ -6,7 +6,7 @@ import { useState, useEffect, useRef } from 'react';
 import Player from './Player';
 import Score from './Score';
 import Obstacle from './Obstacle';
-import { NextWebVitalsMetric } from 'next/app';
+
 
 
 
