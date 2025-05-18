@@ -153,7 +153,7 @@ export default function Game({ key, onGameOver, score, setScore, isRunning }: Ga
         <Obstacle key={index} x={ob.x} />
       ))}
       <div
-        className="absolute bottom-22/100 left-0 w-full h-[1vw] bg-gray-700"
+        className="absolute bottom-22/100 left-0 w-full h-[1vh] bg-gray-700"
       ></div>
     </div>
   );

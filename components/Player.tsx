@@ -30,8 +30,8 @@ export default function Player({ y, screenHeight }: PlayerProps) {
       src = {imageSrc}
       alt = "Player"
 
-      className="absolute bottom-23/100 left-[3vw] w-[8vw]"
-      style={{ transform: `translateY(${y*screenHeight*0.0008}px)` }}
+      className="absolute bottom-23/100 left-[3vw]"
+      style={{ transform: `translateY(${y*0.8}px)`, height: screenHeight*0.15 }}
 
     />
   );
