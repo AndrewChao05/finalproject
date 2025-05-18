@@ -20,8 +20,8 @@ type GameProps = {
 
 export default function Game({onGameOver, score, setScore, highScore, setHighScore, isRunning }: GameProps) {
   const [playerY, setPlayerY] = useState(0);
-  const [velocity, setVelocity] = useState(0);
-  const [screenHeight, setScreenHeight] = useState(
+  const [_velocity, setVelocity] = useState(0);
+  const [screenHeight, _setScreenHeight] = useState(
     typeof window !== 'undefined' ? window.innerHeight : 0
   );
   const GRAVITY = screenHeight*0.005;
@@ -87,7 +87,7 @@ export default function Game({onGameOver, score, setScore, highScore, setHighSco
   }, [isRunning]);
 
 
-  const MAX_OBSTACLES = 10;
+  
   
   //障礙物生成
   const obstacleImages = [
