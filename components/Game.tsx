@@ -2,7 +2,7 @@
 'use client';
 
 import React from 'react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Player from './Player';
 import Score from './Score';
 import Obstacle from './Obstacle';
@@ -30,7 +30,7 @@ export default function Game({onGameOver, score, setScore, highScore, setHighSco
 
  
 
-  const [obstacles, setObstacles] = useState<{ x: number }[]>([]);
+  const [obstacles, setObstacles] = useState<{ x: number,image: string, screenHeight: number }[]>([]);
   const minGap = screenHeight*0.2; // 障礙物之間的最小距離
   const obstacleSpeed = screenHeight*0.005; // 障礙物移動速度
   
@@ -86,21 +86,31 @@ export default function Game({onGameOver, score, setScore, highScore, setHighSco
     return () => clearInterval(scoreInterval);
   }, [isRunning]);
 
+
+  const MAX_OBSTACLES = 10;
+  
   //障礙物生成
   const obstacleImages = [
     '/capacitor.png',
     '/resistor.png',
     '/inductor.png',
   ];
+  const obstacleCountRef = useRef(0);
 
   useEffect(() => {
+    obstacleCountRef.current = obstacles.length;
+  }, [obstacles]);
+  
+  useEffect(() => {
     if (!isRunning) return;
+    
     let lastObstacleX = 1000;
   
     const interval = setInterval(() => {
+      if (obstacleCountRef.current >= 10) return; // ✅ 限制最大數量
       const newX = lastObstacleX + minGap + Math.random()*200;
       const randomImage = obstacleImages[Math.floor(Math.random() * obstacleImages.length)];
-      setObstacles((prev) => [...prev, { x: newX,  image: randomImage}]);
+      setObstacles((prev) => [...prev, { x: newX,  image: randomImage, screenHeight: screenHeight }]);
       lastObstacleX = newX;
     }, 400); // 每 0.4 秒試圖生成一個障礙物
   
@@ -122,8 +132,10 @@ export default function Game({onGameOver, score, setScore, highScore, setHighSco
   }, [isRunning]);
 
   //碰撞
+  
   useEffect(() => {
     if (!isRunning) return;
+
 
     const checkCollision = () => {
       const playerLeft = screenHeight * 0.045; // 位置也可以調整成比例
