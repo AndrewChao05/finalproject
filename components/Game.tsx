@@ -54,7 +54,7 @@ export default function Game({onGameOver, score, setScore, highScore, setHighSco
 
   const loop = (time: number) => {
     if (lastTime !== null) {
-      const delta = (time - lastTime) / 1000; // 秒
+      
 
       velocityRef.current += GRAVITY;
       setPlayerY((y) => {
