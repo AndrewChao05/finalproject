@@ -24,8 +24,6 @@ export default function Game({ onGameOver, score, setScore, isRunning }: GamePro
   const GROUND_LEVEL = 0;
  
   const handleJump = () => {
-    console.log('screenHeight:', screenHeight);
-    console.log('JUMP_FORCE:', JUMP_FORCE);
     setPlayerY((currentY) => {
       if (Math.abs(currentY - GROUND_LEVEL) < 1e-2) {
         setVelocity(JUMP_FORCE);
