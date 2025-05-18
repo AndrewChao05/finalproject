@@ -7,7 +7,7 @@ import Player from './Player';
 import Score from './Score';
 import Obstacle from './Obstacle';
 
-let hit = 0; //測試碰撞次數用
+
 
 type GameProps = {
   onGameOver: () => void;
@@ -20,10 +20,10 @@ type GameProps = {
 
 export default function Game({onGameOver, score, setScore, highScore, setHighScore, isRunning }: GameProps) {
   const [playerY, setPlayerY] = useState(0);
-  const [_velocity, setVelocity] = useState(0);
-  const [screenHeight, _setScreenHeight] = useState(
+  const setVelocity = useState(0)[1];
+  const screenHeight = useState(
     typeof window !== 'undefined' ? window.innerHeight : 0
-  );
+  )[0];
   const GRAVITY = screenHeight*0.005;
   const JUMP_FORCE = -screenHeight*0.035;
   const GROUND_LEVEL = 0;
@@ -155,7 +155,7 @@ export default function Game({onGameOver, score, setScore, highScore, setHighSco
             setHighScore(score);
           }
           onGameOver(); // 停止遊戲
-          hit++;
+          
           ob.x = 1000; //避免重複碰撞導致卡死
           break;
         }
