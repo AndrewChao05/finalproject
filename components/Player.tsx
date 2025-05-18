@@ -15,7 +15,6 @@ export default function Player({ y, screenHeight }: PlayerProps) {
       setIsTest1((prev) => {
         const newFlag = !prev;
         setRunningImage(newFlag ? '/1.png' : '/2.png');
-        console.log(screenHeight);
         return newFlag;
       });
     }, 300); 

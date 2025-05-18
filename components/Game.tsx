@@ -22,10 +22,10 @@ type GameProps = {
 
 export default function Game({onGameOver, score, setScore, highScore, setHighScore, isRunning, screenHeight }: GameProps) {
   const [playerY, setPlayerY] = useState(0);
-  const setVelocity = useState(0)[1];
+  const velocityRef = useRef(0);
   
-  const GRAVITY = screenHeight*0.005;
-  const JUMP_FORCE = -screenHeight*0.035;
+  const GRAVITY = screenHeight*0.0025;
+  const JUMP_FORCE = -screenHeight*0.043;
   const GROUND_LEVEL = 0;
 
  
@@ -39,8 +39,7 @@ export default function Game({onGameOver, score, setScore, highScore, setHighSco
   const handleJump = () => {
     setPlayerY((currentY) => {
       if (Math.abs(currentY - GROUND_LEVEL) < 1e-2) {
-        setVelocity(JUMP_FORCE);
-        console.log(screenHeight);
+        velocityRef.current = JUMP_FORCE;
       }
       return currentY;
     })
@@ -48,21 +47,34 @@ export default function Game({onGameOver, score, setScore, highScore, setHighSco
   };
 
   useEffect(() => {
-    if (!isRunning) return;
+  if (!isRunning) return;
 
-    const gameLoop = setInterval(() => {
-      setVelocity((v) => {
-        setPlayerY((y) => {
-          let newY = y + v;
-          if (newY > GROUND_LEVEL) newY = GROUND_LEVEL;
-          return newY;
-        });
-        return v + GRAVITY;
+  let animationFrameId: number;
+  let lastTime: number | null = null;
+
+  const loop = (time: number) => {
+    if (lastTime !== null) {
+      
+
+      velocityRef.current += GRAVITY;
+      setPlayerY((y) => {
+        let newY = y + velocityRef.current;
+        if (newY > GROUND_LEVEL) {
+          newY = GROUND_LEVEL;
+          velocityRef.current = 0;
+          setPlayerY(GROUND_LEVEL);
+        }
+        return newY;
       });
-    }, 50);
+    }
+    lastTime = time;
+    animationFrameId = requestAnimationFrame(loop);
+  };
 
-    return () => clearInterval(gameLoop);
-  }, [isRunning]);
+  animationFrameId = requestAnimationFrame(loop);
+
+  return () => cancelAnimationFrame(animationFrameId);
+}, [isRunning]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -118,7 +130,7 @@ export default function Game({onGameOver, score, setScore, highScore, setHighSco
     return () => clearInterval(interval);
   }, [isRunning]);
 
-  //移動障礙物
+
   useEffect(() => {
     if (!isRunning) return;
     const update = () => {
