@@ -32,7 +32,7 @@ export default function Game({onGameOver, score, setScore, highScore, setHighSco
 
   const [obstacles, setObstacles] = useState<{ x: number,image: string, screenHeight: number }[]>([]);
   const minGap = screenHeight*0.2; // 障礙物之間的最小距離
-  const obstacleSpeed = screenHeight*0.3; // 障礙物移動速度
+  const obstacleSpeed = screenHeight*0.005; // 障礙物移動速度
   
 
 
@@ -138,8 +138,8 @@ export default function Game({onGameOver, score, setScore, highScore, setHighSco
 
   const update = (time: number) => {
     if (lastTime !== null) {
-      const delta = (time - lastTime) / 1000;
-      const deltaDistance = obstacleSpeed * delta; // 以 60fps 為基準
+      // const delta = (time - lastTime) / 1000;
+      const deltaDistance = obstacleSpeed; // 以 60fps 為基準
 
       setObstacles((prev) =>
         prev
