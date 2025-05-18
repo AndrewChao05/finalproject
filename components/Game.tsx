@@ -40,6 +40,7 @@ export default function Game({onGameOver, score, setScore, highScore, setHighSco
     setPlayerY((currentY) => {
       if (Math.abs(currentY - GROUND_LEVEL) < 1e-2) {
         setVelocity(JUMP_FORCE);
+        console.log(screenHeight);
       }
       return currentY;
     })
