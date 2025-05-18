@@ -7,16 +7,16 @@ import Player from './Player';
 import Score from './Score';
 import Obstacle from './Obstacle';
 
+let hit = 0; //測試碰撞次數用
 
 type GameProps = {
-  key: number;
   onGameOver: () => void;
   score: number;
   setScore: React.Dispatch<React.SetStateAction<number>>;
   isRunning: boolean; 
 };
 
-export default function Game({ key, onGameOver, score, setScore, isRunning }: GameProps) {
+export default function Game({onGameOver, score, setScore, isRunning }: GameProps) {
   const [playerY, setPlayerY] = useState(0);
   const [velocity, setVelocity] = useState(0);
   const [screenHeight, setScreenHeight] = useState(
@@ -86,19 +86,21 @@ export default function Game({ key, onGameOver, score, setScore, isRunning }: Ga
 
   //障礙物生成
   useEffect(() => {
+    if (!isRunning) return;
     let lastObstacleX = 1000;
   
     const interval = setInterval(() => {
       const newX = lastObstacleX + minGap + Math.random()*200;
       setObstacles((prev) => [...prev, { x: newX }]);
       lastObstacleX = newX;
-    }, 400); // 每 2 秒試圖生成一個障礙物
+    }, 400); // 每 0.4 秒試圖生成一個障礙物
   
     return () => clearInterval(interval);
-  }, []);
+  }, [isRunning]);
 
   //移動障礙物
   useEffect(() => {
+    if (!isRunning) return;
     const update = () => {
       setObstacles((prev) =>
         prev
@@ -108,10 +110,12 @@ export default function Game({ key, onGameOver, score, setScore, isRunning }: Ga
       requestAnimationFrame(update);
     };
     update();
-  }, []);
+  }, [isRunning]);
 
   //碰撞
   useEffect(() => {
+    if (!isRunning) return;
+
     const checkCollision = () => {
       const playerLeft = 40;
       const playerRight = 40 + 64;
@@ -128,6 +132,8 @@ export default function Game({ key, onGameOver, score, setScore, isRunning }: Ga
   
         if (collideX && collideY) {
           onGameOver(); // 停止遊戲
+          hit++;
+          ob.x = 1000; //避免重複碰撞導致卡死
           break;
         }
       }
@@ -139,7 +145,10 @@ export default function Game({ key, onGameOver, score, setScore, isRunning }: Ga
     };
   
     animation();
-  }, [obstacles, playerY]);
+
+    return () => {}
+  }, [obstacles, playerY, isRunning]);
+
   
 
   return (

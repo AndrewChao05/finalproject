@@ -23,7 +23,9 @@ export default function Home() {
   };
 
   const handleGameOver = () => {
+    setIsRunning(false);
     setGameState('gameover');
+    
   };
 
   return (
