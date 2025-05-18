@@ -29,8 +29,10 @@ export default function Player({ y, screenHeight }: PlayerProps) {
     <img
       src = {imageSrc}
       alt = "Player"
+
       className="absolute bottom-23/100 left-[3vw] w-[8vw]"
       style={{ transform: `translateY(${y*screenHeight*0.0008}px)` }}
+
     />
   );
 }
