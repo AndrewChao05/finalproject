@@ -16,11 +16,16 @@ type GameProps = {
 export default function Game({ onGameOver, score, setScore, isRunning }: GameProps) {
   const [playerY, setPlayerY] = useState(0);
   const [velocity, setVelocity] = useState(0);
-  const GRAVITY = 1.7;
-  const JUMP_FORCE = -15;
+  const [screenHeight, setScreenHeight] = useState(
+    typeof window !== 'undefined' ? window.innerHeight : 0
+  );
+  const GRAVITY = screenHeight*0.005;
+  const JUMP_FORCE = -screenHeight*0.035;
   const GROUND_LEVEL = 0;
-
+ 
   const handleJump = () => {
+    console.log('screenHeight:', screenHeight);
+    console.log('JUMP_FORCE:', JUMP_FORCE);
     setPlayerY((currentY) => {
       if (Math.abs(currentY - GROUND_LEVEL) < 1e-2) {
         setVelocity(JUMP_FORCE);
@@ -73,10 +78,10 @@ export default function Game({ onGameOver, score, setScore, isRunning }: GamePro
       className="relative w-[80%] h-[80vh] bg-gray-200 overflow-hidden"
       onClick={handleJump}
     >
-      <Player y={playerY} />
+      <Player y={playerY} screenHeight={screenHeight}/>
       <Score score={score} />
       <div
-        className="absolute bottom-22/100 left-0 w-full h-4 bg-gray-700"
+        className="absolute bottom-22/100 left-0 w-full h-[1vw] bg-gray-700"
       ></div>
     </div>
   );

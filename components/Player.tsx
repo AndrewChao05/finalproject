@@ -3,9 +3,10 @@ import { useState, useEffect } from 'react';
 
 type PlayerProps = {
     y: number;
+    screenHeight: number;
 };
 
-export default function Player({ y }: PlayerProps) {
+export default function Player({ y, screenHeight }: PlayerProps) {
   const [runningImage, setRunningImage] = useState('/1.png');
   const [isTest1, setIsTest1] = useState(true);
 
@@ -28,8 +29,8 @@ export default function Player({ y }: PlayerProps) {
     <img
       src = {imageSrc}
       alt = "Player"
-      className="absolute left-10 w-24"
-      style={{ bottom: `${-y+110}px` }}
+      className="absolute bottom-23/100 left-[3vw] w-[8vw]"
+      style={{ transform: `translateY(${y*screenHeight*0.0008}px)` }}
     />
   );
 }
