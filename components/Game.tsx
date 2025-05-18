@@ -6,6 +6,7 @@ import { useState, useEffect, useRef } from 'react';
 import Player from './Player';
 import Score from './Score';
 import Obstacle from './Obstacle';
+import { NextWebVitalsMetric } from 'next/app';
 
 
 
@@ -16,14 +17,13 @@ type GameProps = {
   highScore: number;
   setHighScore: React.Dispatch<React.SetStateAction<number>>;
   isRunning: boolean; 
+  screenHeight: number;
 };
 
-export default function Game({onGameOver, score, setScore, highScore, setHighScore, isRunning }: GameProps) {
+export default function Game({onGameOver, score, setScore, highScore, setHighScore, isRunning, screenHeight }: GameProps) {
   const [playerY, setPlayerY] = useState(0);
   const setVelocity = useState(0)[1];
-  const screenHeight = useState(
-    typeof window !== 'undefined' ? window.innerHeight : 0
-  )[0];
+  
   const GRAVITY = screenHeight*0.005;
   const JUMP_FORCE = -screenHeight*0.035;
   const GROUND_LEVEL = 0;
