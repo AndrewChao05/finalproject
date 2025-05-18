@@ -18,8 +18,8 @@ export default function StartScreen({ onStart }: { onStart: () => void }) {
       className="absolute inset-0 flex flex-col items-center justify-center bg-black bg-opacity-70 text-white text-center cursor-pointer"
       onClick={onStart}
     >
-      <h1 className="text-4xl font-bold mb-4">EE RUN</h1>
-      <p className="text-xl">Tap space or click to start your semester</p>
+      <h1 className="text-6xl font-bold mb-4">EE RUN</h1>
+      <p className="text-xl animate-bounce">Tap Space or Click to Start</p>
     </div>
   );
 }

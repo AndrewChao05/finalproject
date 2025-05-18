@@ -13,10 +13,12 @@ type GameProps = {
   onGameOver: () => void;
   score: number;
   setScore: React.Dispatch<React.SetStateAction<number>>;
+  highScore: number;
+  setHighScore: React.Dispatch<React.SetStateAction<number>>;
   isRunning: boolean; 
 };
 
-export default function Game({onGameOver, score, setScore, isRunning }: GameProps) {
+export default function Game({onGameOver, score, setScore, highScore, setHighScore, isRunning }: GameProps) {
   const [playerY, setPlayerY] = useState(0);
   const [velocity, setVelocity] = useState(0);
   const [screenHeight, setScreenHeight] = useState(
@@ -131,6 +133,9 @@ export default function Game({onGameOver, score, setScore, isRunning }: GameProp
         const collideY = -playerY < obTop;
   
         if (collideX && collideY) {
+          if(score > highScore){
+            setHighScore(score);
+          }
           onGameOver(); // 停止遊戲
           hit++;
           ob.x = 1000; //避免重複碰撞導致卡死
@@ -157,7 +162,7 @@ export default function Game({onGameOver, score, setScore, isRunning }: GameProp
       onClick={handleJump}
     >
       <Player y={playerY} screenHeight={screenHeight}/>
-      <Score score={score} />
+      <Score score={score} highScore={highScore}/>
       {obstacles.map((ob, index) => (
         <Obstacle key={index} x={ob.x} />
       ))}

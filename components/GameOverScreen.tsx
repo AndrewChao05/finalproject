@@ -23,9 +23,9 @@ export default function GameOverScreen({ score, onRestart }: GameOverScreenProps
         className="absolute inset-0 flex flex-col items-center justify-center bg-black bg-opacity-80 text-white z-50"
         onClick={onRestart}
         >
-        <h1 className="text-4xl font-bold mb-4">Game Over</h1>
+        <h1 className="text-4xl font-bold mb-4">You Flunked!</h1>
         <p className="text-2xl mb-4">Score: {score}</p>
-        <p className="text-lg animate-bounce">Tap to Restart</p>
+        <p className="text-lg animate-bounce">Tap Space or Click to Restart</p>
         </div>
     );
 }
