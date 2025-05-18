@@ -14,6 +14,9 @@ export default function Home() {
   const [highScore, setHighScore] = useState(0);
   const [isRunning, setIsRunning] = useState(false);
   const [gamekey, setGameKey] = useState(0);
+  const screenHeight = useState(
+    typeof window !== 'undefined' ? window.innerHeight : 0
+  )[0];
   
 
   const handleStart = () => {
@@ -32,7 +35,7 @@ export default function Home() {
   return (
     <main className="flex justify-center items-center w-full h-screen bg-gray-100">
       {gameState === 'start' && <StartScreen onStart={handleStart} />}
-      {gameState === 'playing' && <Game key={gamekey} onGameOver={handleGameOver} score={score} setScore={setScore} highScore={highScore} setHighScore={setHighScore} isRunning={isRunning}/>}
+      {gameState === 'playing' && <Game key={gamekey} onGameOver={handleGameOver} score={score} setScore={setScore} highScore={highScore} setHighScore={setHighScore} isRunning={isRunning} screenHeight={screenHeight}/>}
       {gameState === 'gameover' && <GameOverScreen score={score} onRestart={handleStart} />} 
     </main>
   );
