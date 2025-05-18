@@ -132,28 +132,17 @@ export default function Game({onGameOver, score, setScore, highScore, setHighSco
 
 
   useEffect(() => {
-  if (!isRunning) return;
-
-  let lastTime: number | null = null;
-
-  const update = (time: number) => {
-    if (lastTime !== null) {
-      // const delta = (time - lastTime) / 1000;
-      const deltaDistance = obstacleSpeed; // 以 60fps 為基準
-
+    if (!isRunning) return;
+    const update = () => {
       setObstacles((prev) =>
         prev
-          .map((ob) => ({ ...ob, x: ob.x - deltaDistance }))
-          .filter((ob) => ob.x > -50)
+          .map((ob) => ({ ...ob, x: ob.x - obstacleSpeed }))
+          .filter((ob) => ob.x > -50) // 移除畫面外的障礙物
       );
-    }
-
-    lastTime = time;
-    requestAnimationFrame(update);
-  };
-
-  requestAnimationFrame(update);
-}, [isRunning]);
+      requestAnimationFrame(update);
+    };
+    update();
+  }, [isRunning]);
 
   //碰撞
   
