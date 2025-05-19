@@ -7,6 +7,9 @@ This Web App is a game where a player controls the character to jump over obstac
 - [Introduction](#introduction-how-did-we-come-up-with-the-idea)
 - [QuickStart](#quick-start)
 - [Reflection](#reflection-on-the-project)
+- [Reference](#reference)
+- [License](#license)
+- [Disclaimer](#disclaimer)
 ## Introduction: How did We Come Up with the Idea?
 
 Side-scrolling is a type of video game, where backgrounds scroll horizontally or vertically while the character encounters different obstacles and has to establish certain moves to dodge them. Classic instances are Mario Super Bros and Cookie Run: Ovenbreak.
@@ -15,6 +18,7 @@ Side-scrolling games are rather easy to implement, and easy to play. Our wish is
 
 ## Quick Start
 ### Prerequisite
+
 - This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 - Make sure you have all these installed:
@@ -62,6 +66,8 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 
 - 張宸嘉 (B13901164)：
 這次的 Final Project，讓我在 React 框架的網頁設計，以及程式的版本控制，都有不少新收穫。在這個專案中我逐漸發現到 git 的重要性，他對於程式多個功能的版本分支維護真的很方便，也讓多位協作者的合作成為可能。另外，開始做這個專案後，我也發現了 React 的好處：架構非常清晰。雖然 TypeScript 的語法需要花些時間去鑽研，不過每個檔案負責不同功能這件事讓人可以很快理解程式的邏輯，知道哪邊該寫什麼。最後，這個 Web App 小遊戲還有許多功能可以擴建，如：選擇不同角色、登記玩家明並記錄最高分等等，之後有時間可以拿這些來練習看看！
+
+## Reference
 
 ## License
 This project is licensed under the [MIT License](LICENSE).
