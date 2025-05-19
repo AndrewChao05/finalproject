@@ -140,7 +140,7 @@ export default function Game({onGameOver, score, setScore, highScore, setHighSco
         prev
           .map((ob) => ({
             ...ob,
-            x: ob.x - obstacleSpeed * (delta / 8.5),
+            x: ob.x - obstacleSpeed * (delta / 8),
           }))
           .filter((ob) => ob.x > -screenHeight * 0.1)
       );
