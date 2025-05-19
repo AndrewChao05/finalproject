@@ -120,7 +120,7 @@ export default function Game({onGameOver, score, setScore, highScore, setHighSco
       const randomImage = obstacleImages[Math.floor(Math.random() * obstacleImages.length)];
       setObstacles((prev) => [...prev, { x: newX,  image: randomImage, screenHeight: screenHeight }]);
     
-    }, screenHeight * 1.0); // 每 1 秒生成一個障礙物
+    }, 750); // 每 1 秒生成一個障礙物
   
     return () => clearInterval(interval);
   }, [isRunning]);
