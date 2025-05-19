@@ -120,7 +120,7 @@ export default function Game({onGameOver, score, setScore, highScore, setHighSco
       const randomImage = obstacleImages[Math.floor(Math.random() * obstacleImages.length)];
       setObstacles((prev) => [...prev, { x: newX,  image: randomImage, screenHeight: screenHeight }]);
     
-    }, 750); // 每 1 秒生成一個障礙物
+    }, screenHeight * 1.0); // 每 1 秒生成一個障礙物
   
     return () => clearInterval(interval);
   }, [isRunning]);
@@ -128,16 +128,29 @@ export default function Game({onGameOver, score, setScore, highScore, setHighSco
 
   useEffect(() => {
     if (!isRunning) return;
-    const update = () => {
+  
+    let animationFrameId: number;
+    let lastTime = performance.now();
+  
+    const update = (time: number) => {
+      const delta = time - lastTime;
+      lastTime = time;
+  
       setObstacles((prev) =>
         prev
-          .map((ob) => ({ ...ob, x: ob.x - obstacleSpeed }))
-          .filter((ob) => ob.x > -50 ) // 移除畫面外的障礙物
+          .map((ob) => ({
+            ...ob,
+            x: ob.x - obstacleSpeed * (delta / 8.5),
+          }))
+          .filter((ob) => ob.x > -screenHeight * 0.1)
       );
-      requestAnimationFrame(update);
+  
+      animationFrameId = requestAnimationFrame(update);
     };
-    update();
-  }, [isRunning]);
+  
+    animationFrameId = requestAnimationFrame(update);
+    return () => cancelAnimationFrame(animationFrameId);
+  }, [isRunning, screenHeight]);
 
   //碰撞
   
