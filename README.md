@@ -5,17 +5,31 @@ This Web App is a game where a player controls the character to jump over obstac
 ## Table of Contents
 
 - [Introduction](#introduction-how-did-we-come-up-with-the-idea)
-- 
+- [QuickStart](#quick-start)
+- [Reflection](#reflection-on-the-project)
 ## Introduction: How did We Come Up with the Idea?
 
 Side-scrolling is a type of video game, where backgrounds scroll horizontally or vertically while the character encounters different obstacles and has to establish certain moves to dodge them. Classic instances are Mario Super Bros and Cookie Run: Ovenbreak.
 
 Side-scrolling games are rather easy to implement, and easy to play. Our wish is to make a game that's friendly, fun, and relaxing to our players; therefore, the idea of _EE RUN_ has emerged.
 
-## Installation
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## Quick Start
+### Prerequisite
+- This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-First, run the development server:
+- Make sure you have all these installed:
+    - git
+    - Node.js
+    - npm
+
+1. Clone the repo
+
+2. Install dependencies
+```bash
+npm install
+```
+
+3. Run the project!
 
 ```bash
 npm run dev
@@ -27,28 +41,17 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+4. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-### Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-### Deploy on Vercel
+- Deploy on Vercel
 
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-
-## Usage
 
 ## Reflection on the Project
 - 趙省樺 (B13901029)：
@@ -59,6 +62,8 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 
 - 張宸嘉 (B13901164)：
 這次的 Final Project，讓我在 React 框架的網頁設計，以及程式的版本控制，都有不少新收穫。在這個專案中我逐漸發現到 git 的重要性，他對於程式多個功能的版本分支維護真的很方便，也讓多位協作者的合作成為可能。另外，開始做這個專案後，我也發現了 React 的好處：架構非常清晰。雖然 TypeScript 的語法需要花些時間去鑽研，不過每個檔案負責不同功能這件事讓人可以很快理解程式的邏輯，知道哪邊該寫什麼。最後，這個 Web App 小遊戲還有許多功能可以擴建，如：選擇不同角色、登記玩家明並記錄最高分等等，之後有時間可以拿這些來練習看看！
+
 ## License
+This project is licensed under the [MIT License](LICENSE).
 
 ## Disclaimer
