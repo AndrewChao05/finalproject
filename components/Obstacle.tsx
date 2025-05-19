@@ -16,7 +16,7 @@ export default function Obstacle({ x, image, screenHeight, screenWidth }: Obstac
       alt="obstacle"
       className="absolute bottom-23/100 w-10 h-16"
       style={{
-        width: `${screenHeight * 0.05}px`, // 高度的 5%
+        width: `${screenWidth * 0.03}px`, // 高度的 5%
         height: `${screenHeight * 0.1}px`,
         left: `${x}px`
       }}

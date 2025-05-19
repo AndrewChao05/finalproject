@@ -160,13 +160,13 @@ export default function Game({onGameOver, score, setScore, highScore, setHighSco
 
 
     const checkCollision = () => {
-      const playerLeft = screenHeight * 0.045; // 位置也可以調整成比例
-      const playerRight = playerLeft + screenHeight * 0.08;
+      const playerLeft = screenWidth * 0.045; // 位置也可以調整成比例
+      const playerRight = playerLeft + screenWidth * 0.08;
       const playerTop = -playerY;
 
       for (const ob of obstacles) {
-        const obLeft = ob.x - screenHeight * 0.045; // 障礙物的左邊界
-        const obRight = ob.x + screenHeight * 0.045;
+        const obLeft = ob.x ; // 障礙物的左邊界
+        const obRight = ob.x + screenWidth * 0.03;
         const obTop = screenHeight * 0.1;
 
         const collideX = playerRight > obLeft && playerLeft < obRight;
