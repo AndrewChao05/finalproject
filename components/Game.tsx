@@ -17,9 +17,10 @@ type GameProps = {
   setHighScore: React.Dispatch<React.SetStateAction<number>>;
   isRunning: boolean; 
   screenHeight: number;
+  screenWidth: number;
 };
 
-export default function Game({onGameOver, score, setScore, highScore, setHighScore, isRunning, screenHeight }: GameProps) {
+export default function Game({onGameOver, score, setScore, highScore, setHighScore, isRunning, screenHeight, screenWidth }: GameProps) {
   const [playerY, setPlayerY] = useState(0);
   const velocityRef = useRef(0);
   
@@ -30,8 +31,8 @@ export default function Game({onGameOver, score, setScore, highScore, setHighSco
  
 
   const [obstacles, setObstacles] = useState<{ x: number,image: string, screenHeight: number }[]>([]);
-  const minGap = screenHeight*0.5; // 障礙物之間的最小距離
-  const obstacleSpeed = screenHeight*0.006; // 障礙物移動速度
+  const minGap = screenWidth*0.5; // 障礙物之間的最小距離
+  const obstacleSpeed = screenWidth*0.004; // 障礙物移動速度
   
 
 
@@ -200,10 +201,10 @@ export default function Game({onGameOver, score, setScore, highScore, setHighSco
       className="relative w-[80%] h-[80vh] bg-gray-200 overflow-hidden"
       onClick={handleJump}
     >
-      <Player y={playerY} screenHeight={screenHeight}/>
+      <Player y={playerY} screenHeight={screenHeight} screenWidth={screenWidth}/>
       <Score score={score} highScore={highScore}/>
       {obstacles.map((ob, index) => (
-        <Obstacle key={index} x={ob.x} image={ob.image} screenHeight={screenHeight} />
+        <Obstacle key={index} x={ob.x} image={ob.image} screenHeight={screenHeight} screenWidth={screenWidth} />
       ))}
       <div
         className="absolute bottom-22/100 left-0 w-full h-[1vh] bg-gray-700"

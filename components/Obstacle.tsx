@@ -5,10 +5,11 @@ type ObstacleProps = {
   x: number; // 水平位置
   image: string;
   screenHeight: number; // 屏幕高度
+  screenWidth: number; // 屏幕寬度
   
 };
 
-export default function Obstacle({ x, image, screenHeight }: ObstacleProps) {
+export default function Obstacle({ x, image, screenHeight, screenWidth }: ObstacleProps) {
   return (
     <img
       src={image}
