@@ -9,7 +9,6 @@ import Obstacle from './Obstacle';
 
 
 
-
 type GameProps = {
   onGameOver: () => void;
   score: number;
@@ -32,7 +31,7 @@ export default function Game({onGameOver, score, setScore, highScore, setHighSco
 
   const [obstacles, setObstacles] = useState<{ x: number,image: string, screenHeight: number }[]>([]);
   const minGap = screenHeight*0.2; // 障礙物之間的最小距離
-  const obstacleSpeed = screenHeight*0.005; // 障礙物移動速度
+  const obstacleSpeed = screenHeight*0.006; // 障礙物移動速度
   
 
 
@@ -108,24 +107,20 @@ export default function Game({onGameOver, score, setScore, highScore, setHighSco
     '/resistor.png',
     '/inductor.png',
   ];
-  const obstacleCountRef = useRef(0);
-
-  useEffect(() => {
-    obstacleCountRef.current = obstacles.length;
-  }, [obstacles]);
   
   useEffect(() => {
     if (!isRunning) return;
     
-    let lastObstacleX = 1000;
+    const lastObstacleX = obstacles.length > 0
+    ? obstacles[obstacles.length - 1].x
+    : screenHeight*1.5; // 如果還沒有障礙物，就從 0 開始
   
     const interval = setInterval(() => {
-      if (obstacleCountRef.current >= 15) return; // ✅ 限制最大數量
       const newX = lastObstacleX + minGap + Math.random()*200;
       const randomImage = obstacleImages[Math.floor(Math.random() * obstacleImages.length)];
       setObstacles((prev) => [...prev, { x: newX,  image: randomImage, screenHeight: screenHeight }]);
-      lastObstacleX = newX;
-    }, 400); // 每 0.4 秒試圖生成一個障礙物
+    
+    }, screenHeight * 1.0); // 每 1 秒生成一個障礙物
   
     return () => clearInterval(interval);
   }, [isRunning]);
@@ -137,7 +132,7 @@ export default function Game({onGameOver, score, setScore, highScore, setHighSco
       setObstacles((prev) =>
         prev
           .map((ob) => ({ ...ob, x: ob.x - obstacleSpeed }))
-          .filter((ob) => ob.x > -50) // 移除畫面外的障礙物
+          .filter((ob) => ob.x > -50 ) // 移除畫面外的障礙物
       );
       requestAnimationFrame(update);
     };
@@ -184,7 +179,7 @@ export default function Game({onGameOver, score, setScore, highScore, setHighSco
 
     return () => {}
   }, [obstacles, playerY, isRunning]);
-
+  
   
 
   return (
