@@ -72,10 +72,9 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 2. [React Tutorial: Learn Tic Tac Toe](https://react.dev/learn/tutorial-tic-tac-toe)
 3. [Learn React Hooks: useEffect - Simply Explained!](https://www.youtube.com/watch?v=-4XpG5_Lj_o)
 4. [PROPS in React explained](https://www.youtube.com/watch?v=uvEAvxWvwOs)
-5. [Learn React Hooks: useEffect - Simply Explained!](https://www.youtube.com/watch?v=-4XpG5_Lj_o)
-6. [113-1 台大電機系資訊部課 5. React.js-1](https://stitch-slicer-a44.notion.site/05-React-js-1-0534b80242d648dfb7a1899d9f48f893)
-7. [113-2 台大電機系資訊部課 6. TypeScript](https://stitch-slicer-a44.notion.site/06-TypeScript-9ef143b4d19f47409e563ec21dc3f313)
-8. [113-1 台大電機系資訊部課 7. React.js-2](https://stitch-slicer-a44.notion.site/07-React-js-2-1a070f8c019880018ce9e0b25f304349)
-9. [113-1 台大電機系資訊部課 9. Next.js-1](https://stitch-slicer-a44.notion.site/09-Next-js-1-70b683a9123e42f4ab624a8f692295a5)
+5. [113-1 台大電機系資訊部課 5. React.js-1](https://stitch-slicer-a44.notion.site/05-React-js-1-0534b80242d648dfb7a1899d9f48f893)
+6. [113-2 台大電機系資訊部課 6. TypeScript](https://stitch-slicer-a44.notion.site/06-TypeScript-9ef143b4d19f47409e563ec21dc3f313)
+7. [113-1 台大電機系資訊部課 7. React.js-2](https://stitch-slicer-a44.notion.site/07-React-js-2-1a070f8c019880018ce9e0b25f304349)
+8. [113-1 台大電機系資訊部課 9. Next.js-1](https://stitch-slicer-a44.notion.site/09-Next-js-1-70b683a9123e42f4ab624a8f692295a5)
 ## License
 This project is licensed under the [MIT License](LICENSE).
